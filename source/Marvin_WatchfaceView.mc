@@ -37,8 +37,10 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var hour = clockTime.hour; 
         if (hour > 12) { hour = hour - 12; }
         var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
-        var timeView = View.findDrawableById("id_time");
-        timeView.setText(timeString);    
+        var timefgView = View.findDrawableById("id_timefg");
+        var timebgView = View.findDrawableById("id_timebg");
+        timefgView.setText(timeString);   
+        timebgView.setText(timeString);    
     
 	 	var activity= AttMon.getInfo();
 	 	var steps = activity.steps;
@@ -60,15 +62,15 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 	 	
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
-        dc.setColor(0xBBBBBB, Gfx.COLOR_TRANSPARENT);
-        if (battery < 100) { dc.drawText(22, 101, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
+        dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
+        if (battery < 100) { dc.drawText(24, 90, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 75) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 50) { dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT); }
-        if (battery <= 25) { dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT); }
-        dc.fillRectangle(15, 74, 9, 3);
-        dc.fillRectangle(13, 77, 14, 25);
+        if (battery <= 25) { dc.setColor(Gfx.COLOR_RED,    Gfx.COLOR_TRANSPARENT); }
+        dc.fillRectangle(15, 63, 9, 3);
+        dc.fillRectangle(13, 66, 14, 25);
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
-        dc.fillRectangle(15, 79, 10, (20 * (100 - battery)) / 100);
+        dc.fillRectangle(15, 68, 10, (20 * (100 - battery)) / 100);
     }
 
     // Called when this View is removed from the screen. Save the
