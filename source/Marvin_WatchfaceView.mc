@@ -8,13 +8,15 @@ using Toybox.Timer as Timer;
 using Toybox.ActivityMonitor as AttMon;
 
 class Marvin_WatchfaceView extends Ui.WatchFace {
-
+    var font;
+    
     function initialize() {
         WatchFace.initialize();
     }
 
     // Load your resources here
     function onLayout(dc) {
+        font = Ui.loadResource(Rez.Fonts.id_font);
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
@@ -39,6 +41,8 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
         var timefgView = View.findDrawableById("id_timefg");
         var timebgView = View.findDrawableById("id_timebg");
+        timefgView.setFont(font);
+        timebgView.setFont(font);
         timefgView.setText(timeString);   
         timebgView.setText(timeString);    
     
@@ -63,14 +67,15 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        if (battery < 100) { dc.drawText(24, 90, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
+        var xoff = 172; var yoff = -2;
+        if (battery < 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 75) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 50) { dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 25) { dc.setColor(Gfx.COLOR_RED,    Gfx.COLOR_TRANSPARENT); }
-        dc.fillRectangle(15, 63, 9, 3);
-        dc.fillRectangle(13, 66, 14, 25);
+        dc.fillRectangle(15+xoff, 63+yoff, 9, 3);
+        dc.fillRectangle(13+xoff, 66+yoff, 14, 25);
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
-        dc.fillRectangle(15, 68, 10, (20 * (100 - battery)) / 100);
+        dc.fillRectangle(15+xoff, 68+yoff, 10, (20 * (100 - battery)) / 100);
     }
 
     // Called when this View is removed from the screen. Save the
