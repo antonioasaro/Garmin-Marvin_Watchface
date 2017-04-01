@@ -2,6 +2,10 @@ using Toybox.WatchUi as Ui;
 using Toybox.Graphics as Gfx;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
+using Toybox.Time as Time;
+using Toybox.Time.Gregorian as Calendar;
+using Toybox.Timer as Timer;
+using Toybox.ActivityMonitor as AttMon;
 
 class Marvin_WatchfaceView extends Ui.WatchFace {
 
@@ -22,14 +26,49 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 
     // Update the view
     function onUpdate(dc) {
-        // Get and show the current time
+        Sys.println("Antonio - onUpdate");
+        var now = Time.now();
+        var info = Calendar.info(now, Time.FORMAT_LONG);
+        var dateString = Lang.format("$1$ $2$ $3$", [info.day_of_week, info.month, info.day]);
+        var dateView = View.findDrawableById("id_date");
+        dateView.setText(dateString);
+            
         var clockTime = Sys.getClockTime();
-        var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
-        var view = View.findDrawableById("TimeLabel");
-        view.setText(timeString);
+        var hour = clockTime.hour; 
+        if (hour > 12) { hour = hour - 12; }
+        var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
+        var timeView = View.findDrawableById("id_time");
+        timeView.setText(timeString);    
+    
+	 	var activity= AttMon.getInfo();
+	 	var steps = activity.steps;
+        var stepsView = View.findDrawableById("id_steps");
+        stepsView.setText(steps.toString());
 
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
+
+        var BTstatusBitmap;
+        var devSettings = Sys.getDeviceSettings();
+        if (devSettings.phoneConnected) { 
+	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
+        } else {
+	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.DisconnectIcon);
+	 	}
+	 	var btstatusView = View.findDrawableById("id_btstatus");
+        dc.drawBitmap(btstatusView.locX, btstatusView.locY, BTstatusBitmap);
+	 	
+        var stats = Sys.getSystemStats(); 
+        var battery = stats.battery;
+        dc.setColor(0xBBBBBB, Gfx.COLOR_TRANSPARENT);
+        if (battery < 100) { dc.drawText(22, 101, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
+        if (battery <= 75) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
+        if (battery <= 50) { dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT); }
+        if (battery <= 25) { dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT); }
+        dc.fillRectangle(15, 74, 9, 3);
+        dc.fillRectangle(13, 77, 14, 25);
+        dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
+        dc.fillRectangle(15, 79, 10, (20 * (100 - battery)) / 100);
     }
 
     // Called when this View is removed from the screen. Save the
