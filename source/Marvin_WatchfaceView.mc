@@ -9,7 +9,6 @@ using Toybox.ActivityMonitor as AttMon;
 
 class Marvin_WatchfaceView extends Ui.WatchFace {
     var font;
-    var frame = 0;
     var sinx = [0, 5, 8, 10, 8, 5, 0, -5, -8, -10, -8, -5];
          
     function initialize() {
@@ -39,6 +38,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
             
         var clockTime = Sys.getClockTime();
         var hour = clockTime.hour; 
+        var mins = clockTime.min; 
         if (hour > 12) { hour = hour - 12; }
         var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
         var timefgView = View.findDrawableById("id_timefg");
@@ -57,13 +57,22 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         View.onUpdate(dc);
 
         var TracerBitmap;
-        if (frame != 59) { 
-            TracerBitmap = Ui.loadResource(Rez.Drawables.BoltIcon);
-        } else {
-            TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
-	 	}
-        dc.drawBitmap(92 + frame, 124 + sinx[frame % (360/30)], TracerBitmap);
-        frame = frame + 1; 
+        var xpos, ypos;
+        for (var i = 0; i <= mins; i++) {
+            xpos = 92 + i; ypos = 124 - sinx[i % (360/30)];
+            if (i == mins) {
+                if (mins == 59) { 
+                    TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
+                } else {
+                    TracerBitmap = Ui.loadResource(Rez.Drawables.BoltIcon);
+                }
+                dc.drawBitmap(xpos, ypos, TracerBitmap);
+            } else {
+                dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+                dc.fillRectangle(xpos, ypos, 1, 1);
+	 	    }
+
+        }
 
         var BTstatusBitmap;
         var devSettings = Sys.getDeviceSettings();
