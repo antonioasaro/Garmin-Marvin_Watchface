@@ -60,7 +60,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var xpos, ypos;
         if (mins == 0) { mins = 60; }
         for (var i = 1; i <= mins; i++) {
-            xpos = 94 + i; ypos = 132 - sinx[i % (360/30)];
+            xpos = 94 + i; ypos = 136 - sinx[i % (360/30)];
             if (i == mins) {
                 if (mins == 60) { 
                     TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
@@ -91,7 +91,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = 173; var yoff = -2;
+        var xoff = 0; var yoff = -7;
         if (battery < 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 75) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 50) { dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT); }

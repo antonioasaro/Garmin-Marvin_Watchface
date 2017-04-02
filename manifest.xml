@@ -2,15 +2,10 @@
     <iq:application entry="Marvin_WatchfaceApp" id="4BECD9B3BBC74F42B98536AF3CCDBEF0" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="1.2.0" name="@Strings.AppName" type="watchface">
 
         <iq:products>
-            <iq:product id="fenix5"/>
-            <iq:product id="fenix5x"/>
-            <iq:product id="fenix5s"/>
-            <iq:product id="fr630"/>
-            <iq:product id="fr235"/>
-            <iq:product id="fr735xt"/>
             <iq:product id="fr230"/>
-            <iq:product id="fenix3"/>
-            <iq:product id="fenix3_hr"/>
+            <iq:product id="fr235"/>
+            <iq:product id="fr630"/>
+            <iq:product id="fr735xt"/>
             <iq:product id="fr920xt"/>
         </iq:products>
 
