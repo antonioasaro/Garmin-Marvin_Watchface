@@ -9,7 +9,8 @@ using Toybox.ActivityMonitor as AttMon;
 
 class Marvin_WatchfaceView extends Ui.WatchFace {
     var font;
-    
+    var sinx = [0, 0, 0, 0];
+         
     function initialize() {
         WatchFace.initialize();
     }
@@ -37,6 +38,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
             
         var clockTime = Sys.getClockTime();
         var hour = clockTime.hour; 
+        var minute = clockTime.min; 
         if (hour > 12) { hour = hour - 12; }
         var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
         var timefgView = View.findDrawableById("id_timefg");
@@ -53,6 +55,15 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
+
+        minute = 0;
+        var TracerBitmap;
+        if (minute != 59) { 
+            TracerBitmap = Ui.loadResource(Rez.Drawables.BoltIcon);
+        } else {
+            TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
+	 	}
+        dc.drawBitmap(92 + minute, 124 + sinx[minute % 4], TracerBitmap); 
 
         var BTstatusBitmap;
         var devSettings = Sys.getDeviceSettings();

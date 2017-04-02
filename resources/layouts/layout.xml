@@ -7,7 +7,6 @@
     <label  x="108"    y="46"  id="id_timebg"    text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_BLACK"/>
     <label  x="105"    y="43"  id="id_timefg"    text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_DK_RED"/>
     <bitmap x="center" y="150" id="id_mars"      filename="../drawables/mars.png" ></bitmap>
-    <bitmap x="20"     y="92"  id="id_marvin"    filename="../drawables/marvin.png" ></bitmap>
-    <bitmap x="96"     y="124" id="id_bolt"      filename="../drawables/bolt.png" ></bitmap>
-    <bitmap x="152"    y="118" id="id_flag"      filename="../drawables/flag.png" ></bitmap>
+    <bitmap x="150"    y="120" id="id_flag"      filename="../drawables/flag.png" ></bitmap>
+    <bitmap x="20"     y="94"  id="id_marvin"    filename="../drawables/marvin.png" ></bitmap>
 </layout>
