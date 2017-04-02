@@ -9,7 +9,7 @@ using Toybox.ActivityMonitor as AttMon;
 
 class Marvin_WatchfaceView extends Ui.WatchFace {
     var font;
-    var sinx = [0, 5, 8, 10, 8, 5, 0, -5, -8, -10, -8, -5];
+    var sinx = [-1, -4, -8, -10, -8, -4, 1, 4, 8, 10, 8, 4];
          
     function initialize() {
         WatchFace.initialize();
@@ -58,20 +58,24 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 
         var TracerBitmap;
         var xpos, ypos;
-        for (var i = 0; i <= mins; i++) {
-            xpos = 92 + i; ypos = 124 - sinx[i % (360/30)];
+        if (mins == 0) { mins = 60; }
+        for (var i = 1; i <= mins; i++) {
+            xpos = 94 + i; ypos = 132 - sinx[i % (360/30)];
             if (i == mins) {
-                if (mins == 59) { 
+                if (mins == 60) { 
                     TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
+                    dc.drawBitmap(xpos, 122, TracerBitmap);
                 } else {
-                    TracerBitmap = Ui.loadResource(Rez.Drawables.BoltIcon);
+                    dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+                    dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
+                    dc.drawLine(xpos+0, ypos-4, xpos+0, ypos+4);
+                    dc.drawLine(xpos-4, ypos-4, xpos+4, ypos+4);
+                    dc.drawLine(xpos-4, ypos+4, xpos+4, ypos-4);
                 }
-                dc.drawBitmap(xpos, ypos, TracerBitmap);
             } else {
                 dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
                 dc.fillRectangle(xpos, ypos, 1, 1);
 	 	    }
-
         }
 
         var BTstatusBitmap;
@@ -87,7 +91,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = 172; var yoff = -2;
+        var xoff = 173; var yoff = -2;
         if (battery < 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 75) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 50) { dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT); }

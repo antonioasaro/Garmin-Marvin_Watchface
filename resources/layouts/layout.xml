@@ -4,9 +4,9 @@
     <bitmap x="148"    y="13"  id="id_btstatus"  filename="../drawables/connect.png"></bitmap>
     <bitmap x="48"     y="27"  id="id_feet"      filename="../drawables/feet.png"></bitmap>
     <label  x="78"     y="21"  id="id_steps"     font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
-    <label  x="107"    y="48"  id="id_timebg"    text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_BLACK"/>
-    <label  x="104"    y="45"  id="id_timefg"    text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_DK_RED"/>
+    <label  x="104"    y="46"  id="id_timebg"    text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_BLACK"/>
+    <label  x="101"    y="43"  id="id_timefg"    text="" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_DK_RED"/>
     <bitmap x="center" y="150" id="id_mars"      filename="../drawables/mars.png" ></bitmap>
-    <bitmap x="150"    y="120" id="id_flag"      filename="../drawables/flag.png" ></bitmap>
-    <bitmap x="20"     y="94"  id="id_marvin"    filename="../drawables/marvin.png" ></bitmap>
+    <bitmap x="150"    y="121" id="id_flag"      filename="../drawables/flag.png" ></bitmap>
+    <bitmap x="20"     y="95"  id="id_marvin"    filename="../drawables/marvin.png" ></bitmap>
 </layout>
