@@ -91,7 +91,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = 0; var yoff = -7;
+        var xoff = -4; var yoff = -6;
         if (battery < 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 75) { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
         if (battery <= 50) { dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_TRANSPARENT); }
