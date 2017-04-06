@@ -9,5 +9,5 @@
     <bitmap x="center" y="155" id="id_mars"      filename="../drawables/mars.png" ></bitmap>
     <bitmap x="150"    y="122" id="id_flag"      filename="../drawables/flag.png" ></bitmap>
     <bitmap x="20"     y="100" id="id_marvin"    filename="../drawables/marvin.png" ></bitmap>
-    <bitmap x="180"    y="60"  id="id_earth"     filename="../drawables/earth.png" ></bitmap>
+    <bitmap x="180"    y="59"  id="id_earth"     filename="../drawables/earth.png" ></bitmap>
 </layout>
