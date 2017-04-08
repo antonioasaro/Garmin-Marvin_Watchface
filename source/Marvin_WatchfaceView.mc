@@ -10,11 +10,11 @@ using Toybox.ActivityMonitor as AttMon;
 class Marvin_WatchfaceView extends Ui.WatchFace {
     var font;
     var sinx = [-1, -4, -8, -10, -8, -4, 1, 4, 8, 10, 8, 4];
-    var devSettings = Sys.getDeviceSettings();
     var round = 0;
          
     function initialize() {
         WatchFace.initialize();
+        var devSettings = Sys.getDeviceSettings();
         if (devSettings.screenShape == Sys.SCREEN_SHAPE_ROUND) { round = 26; }
     }
 
@@ -81,6 +81,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         }
 
         var BTstatusBitmap;
+        var devSettings = Sys.getDeviceSettings();
         if (devSettings.phoneConnected) { 
 	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
         } else {
