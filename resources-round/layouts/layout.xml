@@ -1,0 +1,14 @@
+<layout id="WatchFace">
+    <bitmap x="0"      y="0"   id="id_white"     filename="../../resources/drawables/white.png"></bitmap>
+    <bitmap x="0"      y="22"  id="id_space"     filename="../../resources/drawables/space.png"></bitmap>
+    <label  x="49"     y="19"  id="id_date"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <bitmap x="148"    y="33"  id="id_btstatus"  filename="../../resources/drawables/connect.png"></bitmap>
+    <bitmap x="48"     y="46"  id="id_feet"      filename="../../resources/drawables/feet.png"></bitmap>
+    <label  x="78"     y="40"  id="id_steps"     font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <bitmap x="center" y="182" id="id_mars"      filename="../../resources/drawables/mars.png" ></bitmap>
+    <bitmap x="150"    y="147" id="id_flag"      filename="../../resources/drawables/flag.png" ></bitmap>
+    <bitmap x="20"     y="125" id="id_marvin"    filename="../../resources/drawables/marvin.png" ></bitmap>
+    <bitmap x="184"    y="77"  id="id_earth"     filename="../../resources/drawables/earth.png" ></bitmap>
+    <label  x="108"    y="66"  id="id_timebg"    text="@String.empty" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_BLACK"/>
+    <label  x="106"    y="63"  id="id_timefg"    text="@String.empty" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_DK_RED"/>
+</layout>
