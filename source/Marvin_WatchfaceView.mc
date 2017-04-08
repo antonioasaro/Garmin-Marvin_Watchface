@@ -11,11 +11,15 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     var font;
     var sinx = [-1, -4, -8, -10, -8, -4, 1, 4, 8, 10, 8, 4];
     var round = 0;
+    var rectangle = 0;
+    var devSettings;
          
     function initialize() {
         WatchFace.initialize();
-        var devSettings = Sys.getDeviceSettings();
-        if (devSettings.screenShape == Sys.SCREEN_SHAPE_ROUND) { round = 26; }
+        devSettings = Sys.getDeviceSettings();
+        Sys.println("Antonio - initialize " + devSettings.screenShape);
+        if (devSettings.screenShape == Sys.SCREEN_SHAPE_ROUND)     { round     = 26;  }
+        if (devSettings.screenShape == Sys.SCREEN_SHAPE_RECTANGLE) { rectangle = -18; }
     }
 
     // Load your resources here
@@ -62,11 +66,11 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var xpos, ypos;
         if (mins == 0) { mins = 60; }
         for (var i = 1; i <= mins; i++) {
-            xpos = 94 + i; ypos = (136 + round) - sinx[i % (360/30)];
+            xpos = 94 + i; ypos = (136 + round + rectangle) - sinx[i % (360/30)];
             if (i == mins) {
                 if (mins == 60) { 
                     TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
-                    dc.drawBitmap(xpos, 122 + round, TracerBitmap);
+                    dc.drawBitmap(xpos, 122 + round + rectangle, TracerBitmap);
                 } else {
                     dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
                     dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
@@ -80,8 +84,8 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 	 	    }
         }
 
+        devSettings = Sys.getDeviceSettings();
         var BTstatusBitmap;
-        var devSettings = Sys.getDeviceSettings();
         if (devSettings.phoneConnected) { 
 	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
         } else {
@@ -93,7 +97,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = -4; var yoff = -5 + round;
+        var xoff = -4; var yoff = -5 + round + rectangle/2;
         if (battery <= 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 100) { dc.setColor(Gfx.COLOR_GREEN,  Gfx.COLOR_TRANSPARENT); }
         if (battery <= 75)  { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
