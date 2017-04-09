@@ -12,14 +12,17 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     var sinx = [-1, -4, -8, -10, -8, -4, 1, 4, 8, 10, 8, 4];
     var round = 0;
     var rectangle = 0;
+    var tall = 0;
     var devSettings;
+    var deviceName;
          
     function initialize() {
         WatchFace.initialize();
-        devSettings = Sys.getDeviceSettings();
-        Sys.println("Antonio - initialize " + devSettings.screenShape);
-        if (devSettings.screenShape == Sys.SCREEN_SHAPE_ROUND)     { round     = 26;  }
-        if (devSettings.screenShape == Sys.SCREEN_SHAPE_RECTANGLE) { rectangle = -18; }
+        deviceName = Ui.loadResource(Rez.Strings.deviceName);
+        Sys.println("Antonio - initialize. deviceName: " + deviceName);
+        if (deviceName.equals("round"))      { round     = 26;  }
+        if (deviceName.equals("rectangle"))  { rectangle = -18; }
+        if (deviceName.equals("tall"))       { tall      = 14;   }
     }
 
     // Load your resources here
@@ -60,17 +63,22 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stepsView = View.findDrawableById("id_steps");
         stepsView.setText(steps.toString());
 
+//////////////////////////////////////////
+//		timeString = "12:34";
+//		mins=0;
+
+
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
         var TracerBitmap;
         var xpos, ypos;
         if (mins == 0) { mins = 60; }
         for (var i = 1; i <= mins; i++) {
-            xpos = 94 + i; ypos = (136 + round + rectangle) - sinx[i % (360/30)];
+            xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - sinx[i % (360/30)];
             if (i == mins) {
                 if (mins == 60) { 
                     TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
-                    dc.drawBitmap(xpos, 122 + round + rectangle, TracerBitmap);
+                    dc.drawBitmap(xpos - tall/2, 122 + round + rectangle + tall + tall/2, TracerBitmap);
                 } else {
                     dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
                     dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
@@ -97,7 +105,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = -4; var yoff = -5 + round + rectangle/2;
+        var xoff = -4 - tall/4; var yoff = -5 + round + rectangle/2 + tall/2;
         if (battery <= 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 100) { dc.setColor(Gfx.COLOR_GREEN,  Gfx.COLOR_TRANSPARENT); }
         if (battery <= 75)  { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
