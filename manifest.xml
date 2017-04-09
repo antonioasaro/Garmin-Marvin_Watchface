@@ -9,6 +9,7 @@
             <iq:product id="vivoactive"/>
             <iq:product id="fenix3"/>
             <iq:product id="fr920xt"/>
+            <iq:product id="vivoactive_hr"/>
         </iq:products>
 
         <iq:permissions/>
