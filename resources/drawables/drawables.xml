@@ -3,4 +3,5 @@
     <bitmap id="ConnectIcon"        filename="connect.png" />
     <bitmap id="DisconnectIcon"     filename="disconnect.png" />
     <bitmap id="ExplosionIcon"      filename="explosion.png" />
+    <bitmap id="AlarmIcon"          filename="alarm.png" />
 </drawables>

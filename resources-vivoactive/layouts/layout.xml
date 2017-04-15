@@ -5,13 +5,13 @@
     <bitmap x="0"      y="96"  id="id_white03"    filename="../drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
     <bitmap x="0"      y="128" id="id_white04"    filename="../drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
     
-    <label  x="49"     y="0"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <label  x="46"     y="0"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="148"    y="10"  id="id_btstatus"   filename="../../resources/drawables/connect.png"></bitmap>    
-    <bitmap x="48"     y="26"  id="id_feet"       filename="../../resources/drawables/feet.png"></bitmap>
-    <label  x="78"     y="20"  id="id_steps"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <bitmap x="45"     y="26"  id="id_feet"       filename="../../resources/drawables/feet.png"></bitmap>
+    <label  x="75"     y="20"  id="id_steps"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="center" y="134" id="id_mars"       filename="../../resources/drawables/mars.png" ></bitmap>
     <bitmap x="149"    y="102" id="id_flag"       filename="../../resources/drawables/flag.png" ></bitmap>
-    <bitmap x="20"     y="77"  id="id_marvin"     filename="../../resources/drawables/marvin.png" ></bitmap>
+    <bitmap x="20"     y="76"  id="id_marvin"     filename="../../resources/drawables/marvin.png" ></bitmap>
     <bitmap x="177"    y="52"  id="id_earth"      filename="../../resources/drawables/earth.png" ></bitmap>
     <label  x="107"    y="41"  id="id_timebg"     text="@String.empty" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_SMALL" color="Gfx.COLOR_BLACK"/>
     <label  x="105"    y="38"  id="id_timefg"     text="@String.empty" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_SMALL" color="Gfx.COLOR_DK_RED"/>

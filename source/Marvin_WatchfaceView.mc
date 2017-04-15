@@ -19,7 +19,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     function initialize() {
         WatchFace.initialize();
         deviceName = Ui.loadResource(Rez.Strings.deviceName);
-        Sys.println("Antonio - initialize. deviceName: " + deviceName);
+        Sys.println("Antonio - initialize with deviceName: " + deviceName);
         if (deviceName.equals("round"))      { round     = 26;  }
         if (deviceName.equals("rectangle"))  { rectangle = -18; }
         if (deviceName.equals("tall"))       { tall      = 14;   }
@@ -101,11 +101,19 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 	 	}
 	 	var btstatusView = View.findDrawableById("id_btstatus");
         dc.drawBitmap(btstatusView.locX, btstatusView.locY, BTstatusBitmap);
+
+        var alarmBitmap;
+        if (devSettings.alarmCount > 0) {
+            Sys.println("Antonio - onUpdate: alarmCount");
+	 		alarmBitmap = Ui.loadResource(Rez.Drawables.AlarmIcon);
+            dc.drawBitmap(btstatusView.locX+10+10, btstatusView.locY-1, alarmBitmap);
+        }
+        
 	 	
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = -4 - tall/4; var yoff = -5 + round + rectangle/2 + tall/2;
+        var xoff = -4 - tall/4 + rectangle/4; var yoff = -5 + round + rectangle/2 + tall/2;
         if (battery <= 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 100) { dc.setColor(Gfx.COLOR_GREEN,  Gfx.COLOR_TRANSPARENT); }
         if (battery <= 75)  { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
