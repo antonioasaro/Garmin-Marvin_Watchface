@@ -1,7 +1,7 @@
 <layout id="WatchFace">
     <bitmap x="0"      y="0"   id="id_space"     filename="../drawables/space.png"></bitmap>
-    <label  x="49"     y="3"   id="id_date"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
-    <bitmap x="140"    y="13"  id="id_btstatus"  filename="../drawables/connect.png"></bitmap>
+    <label  x="46"     y="3"   id="id_date"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <bitmap x="143"    y="13"  id="id_btstatus"  filename="../drawables/connect.png"></bitmap>
     <bitmap x="48"     y="27"  id="id_feet"      filename="../drawables/feet.png"></bitmap>
     <label  x="78"     y="21"  id="id_steps"     font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="center" y="155" id="id_mars"      filename="../drawables/mars.png" ></bitmap>

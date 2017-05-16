@@ -6,10 +6,10 @@
     <bitmap x="0"      y="128" id="id_white04"    filename="../../resources-vivoactive/drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
     <bitmap x="0"      y="160" id="id_white05"    filename="../../resources-vivoactive/drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
 
-    <label  x="16"     y="0"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
-    <bitmap x="107"    y="14"  id="id_btstatus"   filename="../../resources/drawables/connect.png"></bitmap>    
-    <bitmap x="15"     y="26"  id="id_feet"       filename="../../resources/drawables/feet.png"></bitmap>
-    <label  x="45"     y="20"  id="id_steps"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <label  x="11"     y="0"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <bitmap x="112"    y="14"  id="id_btstatus"   filename="../../resources/drawables/connect.png"></bitmap>    
+    <bitmap x="11"     y="26"  id="id_feet"       filename="../../resources/drawables/feet.png"></bitmap>
+    <label  x="40"     y="20"  id="id_steps"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="center" y="174" id="id_mars"       filename="../../resources/drawables/mars.png" ></bitmap>
     <bitmap x="116"    y="146" id="id_flag"       filename="../../resources/drawables/flag.png" ></bitmap>
     <bitmap x="-7"     y="119" id="id_marvin"     filename="../../resources/drawables/marvin.png" ></bitmap>
