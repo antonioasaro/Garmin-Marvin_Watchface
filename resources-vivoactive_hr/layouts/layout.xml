@@ -7,7 +7,7 @@
     <bitmap x="0"      y="160" id="id_white05"    filename="../../resources-vivoactive/drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
 
     <label  x="11"     y="0"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
-    <bitmap x="112"    y="14"  id="id_btstatus"   filename="../../resources/drawables/connect.png"></bitmap>    
+    <bitmap x="110"    y="14"  id="id_btstatus"   filename="../../resources/drawables/connect.png"></bitmap>    
     <bitmap x="11"     y="26"  id="id_feet"       filename="../../resources/drawables/feet.png"></bitmap>
     <label  x="40"     y="20"  id="id_steps"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="center" y="174" id="id_mars"       filename="../../resources/drawables/mars.png" ></bitmap>

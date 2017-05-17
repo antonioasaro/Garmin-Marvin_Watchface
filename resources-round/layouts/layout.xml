@@ -2,7 +2,7 @@
     <bitmap x="0"      y="0"   id="id_white"     filename="../../resources/drawables/white.png"></bitmap>
     <bitmap x="0"      y="22"  id="id_space"     filename="../../resources/drawables/space.png"></bitmap>
     <label  x="40"     y="20"  id="id_date"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
-    <bitmap x="159"    y="35"  id="id_btstatus"  filename="../../resources/drawables/connect.png"></bitmap>
+    <bitmap x="155"    y="37"  id="id_btstatus"  filename="../../resources/drawables/connect.png"></bitmap>
     <bitmap x="42"     y="47"  id="id_feet"      filename="../../resources/drawables/feet.png"></bitmap>
     <label  x="71"     y="41"  id="id_steps"     font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="center" y="182" id="id_mars"      filename="../../resources/drawables/mars.png" ></bitmap>

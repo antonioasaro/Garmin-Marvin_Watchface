@@ -106,14 +106,14 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         if (devSettings.alarmCount > 0) {
             Sys.println("Antonio - onUpdate: alarmCount");
 	 		alarmBitmap = Ui.loadResource(Rez.Drawables.AlarmIcon);
-            dc.drawBitmap(btstatusView.locX+10+8, btstatusView.locY-1, alarmBitmap);
+            dc.drawBitmap(btstatusView.locX+10+9, btstatusView.locY-1, alarmBitmap);
         }
         
 	 	
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = -6 - tall/4 + rectangle/4; var yoff = -5 + round + rectangle/2 + tall/2;
+        var xoff = -5 - tall/4 + rectangle/4; var yoff = -5 + round + rectangle/2 + tall/2;
         if (battery <= 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 100) { dc.setColor(Gfx.COLOR_GREEN,  Gfx.COLOR_TRANSPARENT); }
         if (battery <= 75)  { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
