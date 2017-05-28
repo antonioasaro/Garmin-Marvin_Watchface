@@ -45,11 +45,15 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var dateString = Lang.format("$1$ $2$ $3$", [info.day_of_week, info.month, info.day]);
         var dateView = View.findDrawableById("id_date");
         dateView.setText(dateString);
-            
+
+        devSettings = Sys.getDeviceSettings();            
         var clockTime = Sys.getClockTime();
         var hour = clockTime.hour; 
         var mins = clockTime.min; 
-        if (hour > 12) { hour = hour - 12; }
+        if (!devSettings.is24Hour) {
+            if (hour > 12) { hour = hour - 12; }
+            if (hour == 0) { hour = 12; }
+        } 
         var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
         var timefgView = View.findDrawableById("id_timefg");
         var timebgView = View.findDrawableById("id_timebg");
@@ -92,7 +96,6 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 	 	    }
         }
 
-        devSettings = Sys.getDeviceSettings();
         var BTstatusBitmap;
         if (devSettings.phoneConnected) { 
 	 		BTstatusBitmap = Ui.loadResource(Rez.Drawables.ConnectIcon);
