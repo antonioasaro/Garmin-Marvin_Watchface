@@ -15,9 +15,11 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     var tall = 0;
     var devSettings;
     var deviceName;
+    var showSeconds;
          
     function initialize() {
         WatchFace.initialize();
+        showSeconds = 0;
         deviceName = Ui.loadResource(Rez.Strings.deviceName);
         Sys.println("Antonio - initialize with deviceName: " + deviceName);
         if (deviceName.equals("round"))      { round     = 26;  }
@@ -50,6 +52,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var clockTime = Sys.getClockTime();
         var hour = clockTime.hour; 
         var mins = clockTime.min; 
+        var secs = clockTime.sec;
         if (!devSettings.is24Hour) {
             if (hour > 12) { hour = hour - 12; }
             if (hour == 0) { hour = 12; }
@@ -75,12 +78,13 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
         var TracerBitmap;
-        var xpos, ypos;
-        if (mins == 0) { mins = 60; }
-        for (var i = 1; i <= mins; i++) {
+        var xpos, ypos, tpos;
+        if (showSeconds == 0) { tpos = mins; } else { tpos = secs; }
+        if (tpos == 0) { tpos = 60; }
+        for (var i = 1; i <= tpos; i++) {
             xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - sinx[i % (360/30)];
-            if (i == mins) {
-                if (mins == 60) { 
+            if (i == tpos) {
+                if (tpos == 60) { 
                     TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
                     dc.drawBitmap(xpos - tall/2, 122 + round + rectangle + tall + tall/2, TracerBitmap);
                 } else {
@@ -136,10 +140,16 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
+        Sys.println("Antonio - onExitSleep");
+        showSeconds = 1;
+        Ui.requestUpdate();
     }
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() {
+        Sys.println("Antonio - onEnterSleep");
+        showSeconds = 0;
+        Ui.requestUpdate();
     }
 
 }
