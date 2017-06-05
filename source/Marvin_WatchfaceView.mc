@@ -19,7 +19,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
          
     function initialize() {
         WatchFace.initialize();
-        showSeconds = 0;
+        showSeconds = true;
         deviceName = Ui.loadResource(Rez.Strings.deviceName);
         Sys.println("Antonio - initialize with deviceName: " + deviceName);
         if (deviceName.equals("round"))      { round     = 26;  }
@@ -79,7 +79,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         View.onUpdate(dc);
         var TracerBitmap;
         var xpos, ypos, tpos;
-        if (showSeconds == 0) { tpos = mins; } else { tpos = secs; }
+        if (showSeconds == true) { tpos = secs; } else { tpos = mins; }
         if (tpos == 0) { tpos = 60; }
         for (var i = 1; i <= tpos; i++) {
             xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - sinx[i % (360/30)];
@@ -141,14 +141,14 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
         Sys.println("Antonio - onExitSleep");
-        showSeconds = 1;
+        showSeconds = true;
         Ui.requestUpdate();
     }
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() {
         Sys.println("Antonio - onEnterSleep");
-        showSeconds = 0;
+        showSeconds = false;
         Ui.requestUpdate();
     }
 
