@@ -78,24 +78,25 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
         var TracerBitmap;
-        var xpos, ypos, tpos;
+        var xpos, ypos, tpos, tclr;
         if (showSeconds == true) { tpos = secs; } else { tpos = mins; }
+        if (showSeconds == true) { tclr = Gfx.COLOR_BLUE; } else { tclr = Gfx.COLOR_RED; }
         if (tpos == 0) { tpos = 60; }
         for (var i = 1; i <= tpos; i++) {
             xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - sinx[i % (360/30)];
             if (i == tpos) {
                 if (tpos == 60) { 
-                    TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionIcon);
+                    if (showSeconds == true) { TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionBlueIcon); } else { TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionRedIcon); }
                     dc.drawBitmap(xpos - tall/2, 122 + round + rectangle + tall + tall/2, TracerBitmap);
                 } else {
-                    dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+                    dc.setColor(tclr, Gfx.COLOR_TRANSPARENT);
                     dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
                     dc.drawLine(xpos+0, ypos-4, xpos+0, ypos+4);
                     dc.drawLine(xpos-4, ypos-4, xpos+4, ypos+4);
                     dc.drawLine(xpos-4, ypos+4, xpos+4, ypos-4);
                 }
             } else {
-                dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+                dc.setColor(tclr, Gfx.COLOR_TRANSPARENT);
                 dc.fillRectangle(xpos, ypos, 1, 1);
 	 	    }
         }
@@ -142,7 +143,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     function onExitSleep() {
         Sys.println("Antonio - onExitSleep");
         showSeconds = true;
-        Ui.requestUpdate();
+////        Ui.requestUpdate();
     }
 
     // Terminate any active timers and prepare for slow updates.
