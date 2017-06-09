@@ -20,4 +20,5 @@
     <bitmap x="129"    y="29"   id="id_star01"    filename="../drawables/star.png"></bitmap>
     <bitmap x="90"     y="91"   id="id_shooting"  filename="../drawables/shootingstar.png"></bitmap>
     <bitmap x="176"    y="100"  id="id_spaceship" filename="../drawables/spaceship.png"></bitmap>
+    <label  x="100"    y="50"  id="id_secs"      font="Gfx.FONT_XTINY" color="Gfx.COLOR_TRANSPARENT"></label>
 </layout>

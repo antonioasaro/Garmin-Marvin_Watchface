@@ -1,7 +1,7 @@
 <layout id="WatchFace">
     <bitmap x="0"      y="0"   id="id_white"     filename="../../resources/drawables/white.png"></bitmap>
     <bitmap x="0"      y="22"  id="id_space"     filename="../../resources/drawables/space.png"></bitmap>
-    <label  x="40"     y="20"  id="id_date"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <label  x="43"     y="20"  id="id_date"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="155"    y="37"  id="id_btstatus"  filename="../../resources/drawables/connect.png"></bitmap>
     <bitmap x="42"     y="47"  id="id_feet"      filename="../../resources/drawables/feet.png"></bitmap>
     <label  x="71"     y="41"  id="id_steps"     font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
@@ -11,4 +11,5 @@
     <bitmap x="184"    y="77"  id="id_earth"     filename="../../resources/drawables/earth.png" ></bitmap>
     <label  x="108"    y="66"  id="id_timebg"    text="@String.empty" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_BLACK"/>
     <label  x="106"    y="63"  id="id_timefg"    text="@String.empty" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_NUMBER_HOT" color="Gfx.COLOR_DK_RED"/>
+    <label  x="100"    y="50"  id="id_secs"      font="Gfx.FONT_XTINY" color="Gfx.COLOR_TRANSPARENT"></label>
 </layout>

@@ -21,4 +21,5 @@
     <bitmap x="92"     y="38"   id="id_star01"    filename="../../resources-vivoactive/drawables/star.png"></bitmap>
     <bitmap x="60"     y="113"  id="id_shooting"  filename="../../resources-vivoactive/drawables/shootingstar.png"></bitmap>
     <bitmap x="120"    y="107"  id="id_spaceship" filename="../../resources-vivoactive/drawables/spaceship.png"></bitmap>
+    <label  x="100"    y="50"  id="id_secs"      font="Gfx.FONT_XTINY" color="Gfx.COLOR_TRANSPARENT"></label>
 </layout>

@@ -5,7 +5,7 @@
     <bitmap x="0"      y="96"  id="id_white03"    filename="../drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
     <bitmap x="0"      y="128" id="id_white04"    filename="../drawables/white.png"><palette><color>FFFFFF</color></palette></bitmap>
     
-    <label  x="40"     y="0"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
+    <label  x="41"     y="1"   id="id_date"       font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
     <bitmap x="153"    y="10"  id="id_btstatus"   filename="../../resources/drawables/connect.png"></bitmap>    
     <bitmap x="41"     y="26"  id="id_feet"       filename="../../resources/drawables/feet.png"></bitmap>
     <label  x="71"     y="20"  id="id_steps"      font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_BLACK"></label>
@@ -20,4 +20,5 @@
     <bitmap x="129"    y="29"   id="id_star01"    filename="../drawables/star.png"></bitmap>
     <bitmap x="90"     y="91"   id="id_shooting"  filename="../drawables/shootingstar.png"></bitmap>
     <bitmap x="176"    y="100"  id="id_spaceship" filename="../drawables/spaceship.png"></bitmap>
+    <label  x="100"    y="50"  id="id_secs"      font="Gfx.FONT_XTINY" color="Gfx.COLOR_TRANSPARENT"></label>
 </layout>

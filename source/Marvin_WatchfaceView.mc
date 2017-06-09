@@ -10,6 +10,7 @@ using Toybox.ActivityMonitor as AttMon;
 class Marvin_WatchfaceView extends Ui.WatchFace {
     var font;
     var sinx = [-1, -4, -8, -10, -8, -4, 1, 4, 8, 10, 8, 4];
+    var cosx = [-1, -2, -4, -5,  -4, -2, 1, 2, 4, 5,  4, 2];
     var round = 0;
     var rectangle = 0;
     var tall = 0;
@@ -53,6 +54,8 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var hour = clockTime.hour; 
         var mins = clockTime.min; 
         var secs = clockTime.sec;
+        var secsString = Lang.format("$1$", [clockTime.sec.format("%02d")]);
+
         if (!devSettings.is24Hour) {
             if (hour > 12) { hour = hour - 12; }
             if (hour == 0) { hour = 12; }
@@ -78,22 +81,37 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
         var TracerBitmap;
-        var xpos, ypos, tpos, tclr;
+        var secsView = View.findDrawableById("id_secs");
+        var xpos, ypos, tpos, tclr, xoff, yoff;
         if (showSeconds == true) { tpos = secs; } else { tpos = mins; }
         if (showSeconds == true) { tclr = Gfx.COLOR_BLUE; } else { tclr = Gfx.COLOR_RED; }
         if (tpos == 0) { tpos = 60; }
         for (var i = 1; i <= tpos; i++) {
-            xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - sinx[i % (360/30)];
+            secsView.setColor(Gfx.COLOR_TRANSPARENT);   
+            if (showSeconds == true) { yoff = cosx[i % (360/30)]; } else { yoff = sinx[i % (360/30)]; }
+            xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - yoff;
             if (i == tpos) {
                 if (tpos == 60) { 
-                    if (showSeconds == true) { TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionBlueIcon); } else { TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionRedIcon); }
+                    if (showSeconds == true) { 
+                        TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionBlueIcon); 
+                    } else {
+                        TracerBitmap = Ui.loadResource(Rez.Drawables.ExplosionRedIcon);
+                    }
                     dc.drawBitmap(xpos - tall/2, 122 + round + rectangle + tall + tall/2, TracerBitmap);
                 } else {
-                    dc.setColor(tclr, Gfx.COLOR_TRANSPARENT);
-                    dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
-                    dc.drawLine(xpos+0, ypos-4, xpos+0, ypos+4);
-                    dc.drawLine(xpos-4, ypos-4, xpos+4, ypos+4);
-                    dc.drawLine(xpos-4, ypos+4, xpos+4, ypos-4);
+                    if (showSeconds == true) {
+                        if (secs < 59) {
+                            secsView.setText(secsString); 
+                            secsView.setLocation(xpos-6, ypos-8);
+                            secsView.setColor(Gfx.COLOR_BLUE);
+                        }   
+                    } else {
+                        dc.setColor(tclr, Gfx.COLOR_TRANSPARENT);
+                        dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
+                        dc.drawLine(xpos+0, ypos-4, xpos+0, ypos+4);
+                        dc.drawLine(xpos-4, ypos-4, xpos+4, ypos+4);
+                        dc.drawLine(xpos-4, ypos+4, xpos+4, ypos-4);
+                    }
                 }
             } else {
                 dc.setColor(tclr, Gfx.COLOR_TRANSPARENT);
@@ -121,7 +139,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var stats = Sys.getSystemStats(); 
         var battery = stats.battery;
         dc.setColor(0x444444, Gfx.COLOR_TRANSPARENT);
-        var xoff = -5 - tall/4 + rectangle/4; var yoff = -5 + round + rectangle/2 + tall/2;
+        xoff = -5 - tall/4 + rectangle/4; yoff = -5 + round + rectangle/2 + tall/2;
         if (battery <= 100) { dc.drawText(24+xoff, 90+yoff, Gfx.FONT_SYSTEM_XTINY, battery.format("%d") + "%", Gfx.TEXT_JUSTIFY_CENTER); }
         if (battery <= 100) { dc.setColor(Gfx.COLOR_GREEN,  Gfx.COLOR_TRANSPARENT); }
         if (battery <= 75)  { dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT); }
