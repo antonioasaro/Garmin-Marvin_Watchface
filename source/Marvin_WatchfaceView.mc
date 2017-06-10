@@ -17,6 +17,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     var devSettings;
     var deviceName;
     var showSeconds;
+    var secsView;
          
     function initialize() {
         WatchFace.initialize();
@@ -63,6 +64,7 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
         var timeString = Lang.format("$1$:$2$", [hour, clockTime.min.format("%02d")]);
         var timefgView = View.findDrawableById("id_timefg");
         var timebgView = View.findDrawableById("id_timebg");
+        secsView = View.findDrawableById("id_secs");
         timefgView.setFont(font);
         timebgView.setFont(font);
         timefgView.setText(timeString);   
@@ -79,15 +81,15 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
 
 
         // Call the parent onUpdate function to redraw the layout
+        if (showSeconds != true) { secsView.setColor(Gfx.COLOR_TRANSPARENT); }   
         View.onUpdate(dc);
         var TracerBitmap;
-        var secsView = View.findDrawableById("id_secs");
         var xpos, ypos, tpos, tclr, xoff, yoff;
         if (showSeconds == true) { tpos = secs; } else { tpos = mins; }
         if (showSeconds == true) { tclr = Gfx.COLOR_BLUE; } else { tclr = Gfx.COLOR_RED; }
         if (tpos == 0) { tpos = 60; }
         for (var i = 1; i <= tpos; i++) {
-            secsView.setColor(Gfx.COLOR_TRANSPARENT);   
+//            secsView.setColor(Gfx.COLOR_TRANSPARENT);   
             if (showSeconds == true) { yoff = cosx[i % (360/30)]; } else { yoff = sinx[i % (360/30)]; }
             xpos = 94 + i - 2*tall; ypos = (136 + round + rectangle + tall + tall/2) - yoff;
             if (i == tpos) {
@@ -104,7 +106,9 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
                             secsView.setText(secsString); 
                             secsView.setLocation(xpos-6, ypos-8);
                             secsView.setColor(Gfx.COLOR_BLUE);
-                        }   
+                        } else {
+                            secsView.setColor(Gfx.COLOR_TRANSPARENT);
+                        }  
                     } else {
                         dc.setColor(tclr, Gfx.COLOR_TRANSPARENT);
                         dc.drawLine(xpos-4, ypos+0, xpos+4, ypos);
@@ -161,7 +165,6 @@ class Marvin_WatchfaceView extends Ui.WatchFace {
     function onExitSleep() {
         Sys.println("Antonio - onExitSleep");
         showSeconds = true;
-////        Ui.requestUpdate();
     }
 
     // Terminate any active timers and prepare for slow updates.
